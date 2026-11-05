@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
 
-# تثبيت الاعتماديات الأساسية
 RUN apt-get update && apt-get install -y \
     libpq5 \
     libssl3 \
@@ -9,12 +8,11 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# نسخ الملف التنفيذي
 COPY BricouliAPI /app/BricouliAPI
+COPY config.ini /app/config.ini
 RUN chmod +x /app/BricouliAPI
 
-# فتح المنفذ المطلوب
 EXPOSE 8080
 
-# تشغيل التطبيق مباشرة
+# تشغيل التطبيق مع التقاط أي رسالة خطأ صريحة
 CMD ["./BricouliAPI"]
