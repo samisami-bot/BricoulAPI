@@ -12,6 +12,8 @@ COPY BricouliAPI /app/BricouliAPI
 COPY config.ini /app/config.ini
 RUN chmod +x /app/BricouliAPI
 
+RUN apt-get update && apt-get install -y openssl ca-certificates
+
 EXPOSE 8080
 
 # تشغيل التطبيق مع التقاط أي رسالة خطأ صريحة
