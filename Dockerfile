@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-# Install runtime dependencies for PostgreSQL (libpq) and OpenSSL
+# تثبيت الاعتماديات الأساسية
 RUN apt-get update && apt-get install -y \
     libpq5 \
     libssl3 \
@@ -9,11 +9,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy the compiled Linux executable
+# نسخ الملف التنفيذي
 COPY BricouliAPI /app/BricouliAPI
 RUN chmod +x /app/BricouliAPI
 
-# Expose the port your API listens on (check your Config.Port)
+# فتح المنفذ المطلوب
 EXPOSE 8080
 
+# تشغيل التطبيق مباشرة
 CMD ["./BricouliAPI"]
